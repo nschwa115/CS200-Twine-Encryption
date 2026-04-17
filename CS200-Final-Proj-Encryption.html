@@ -13,6 +13,9 @@
 (set: $Lock1Clue to false)
 (set: $Lock2Clue to false)
 (set: $Lock3Clue to false)
+(set: $Lock1Open to false)
+(set: $Lock2Open to false)
+(set: $Lock3Open to false)
 
 You awaken and find yourself on the ground in a dimly lit room.
 
@@ -22,9 +25,33 @@ You awaken and find yourself on the ground in a dimly lit room.
 [[Inspect the North Wall-&gt;NorthWall]]
 [[Inspect the East Wall-&gt;EastWall]]
 [[Inspect the South Wall-&gt;Door]]
-[[Inspect the West Wall-&gt;WestWall]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100"></tw-passagedata><tw-passagedata pid="7" name="Box" tags="" position="625,675" size="100,100"></tw-passagedata><tw-passagedata pid="8" name="Escape" tags="" position="625,925" size="100,100">Congratulations! You made it out using the different ciphers to decrypt the codes and get the key from the box.
+[[Inspect the West Wall-&gt;WestWall]]
 
-[[Start Over-&gt;Start]]</tw-passagedata></tw-storydata>
+[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100"></tw-passagedata><tw-passagedata pid="7" name="Box" tags="" position="625,675" size="100,100">
+On the box you see 3 locks labeled 1, 2, and 3. All locks look similar with a long line of letter wheels.
+
+
+(if: $Lock1Open is false)[(if:$Lock1Clue is true)[Unlock Lock 1(click-replace: &quot;Unlock Lock 1&quot;)[(set: $Lock1Open to true)Lock 1 is opened]](else:)[You need to look for the clue for Lock 1.]](else:)[Lock 1 is opened.]
+(if: $Lock2Open is false)[(if:$Lock2Clue is true)[Unlock Lock 2(click-replace: &quot;Unlock Lock 2&quot;)[(set: $Lock2Open to true)Lock 2 is opened]](else:)[You need to look for the clue for Lock 2.]](else:)[Lock 2 is opened.]
+(if: $Lock3Open is false)[(if:$Lock3Clue is true)[Unlock Lock 3(click-replace: &quot;Unlock Lock 3&quot;)[(set: $Lock3Open to true)Lock 3 is opened]](else:)[You need to look for the clue for Lock 3.]](else:)[Lock 3 is opened.]
+
+(live:1s)[
+(if: $Lock1Open and $Lock2Open and $Lock3Open is true)[[[Open the box-&gt;GetKey]]](else:)[[Look around the room-&gt;Room]]
+]</tw-passagedata><tw-passagedata pid="8" name="Escape" tags="" position="625,925" size="100,100">Congratulations! You made it out using the different ciphers to decrypt the codes and get the key from the box.
+
+[[Start Over-&gt;Start]]</tw-passagedata><tw-passagedata pid="9" name="GetKey" tags="" position="750,800" size="100,100">(set: $hasKey to true)
+
+In the box you find a key.
+
+[[Take the key and return to the room.-&gt;Room]]</tw-passagedata><tw-passagedata pid="10" name="DEV-TESTING" tags="" position="950,400" size="100,100">DEV ONLY TESTING TO FORCE VARIABLE VALUES TO TRUE
+
+Get Lock 1 Clue (click-replace: &quot;Get Lock 1 Clue&quot;)[(set: $Lock1Clue to true) Collected]
+Get Lock 2 Clue (click-replace: &quot;Get Lock 2 Clue&quot;)[(set: $Lock2Clue to true) Collected]
+Get Lock 3 Clue (click-replace: &quot;Get Lock 3 Clue&quot;)[(set: $Lock3Clue to true) Collected]
+
+Get Key (click-replace: &quot;Get Key&quot;)[(set: $HasKey to true) Collected]
+
+[[Return to Room-&gt;Room]]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
