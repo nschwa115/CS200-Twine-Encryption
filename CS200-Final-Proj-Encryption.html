@@ -101,14 +101,30 @@ On the back of the decoding wheel you see the words &quot;Ceaser, 3&quot; and yo
 }]</tw-passagedata><tw-passagedata pid="7" name="Box" tags="" position="625,675" size="100,100">
 On the box you see 3 locks labeled 1, 2, and 3. All locks look similar with a long line of letter wheels.
 
+{
+(if: $Lock1Open is false)[
+	(if:$Lock1Clue is true)[
+    	Unlock Lock 1(click-replace: &quot;Unlock Lock 1&quot;)[(set: $Lock1Open to true)Lock 1 is opened]
+    ]
+    (else:)[You need to look for the clue for Lock 1.]
+    ](else:)[Lock 1 is opened.] &lt;br&gt;
+(if: $Lock2Open is false)[
+	(if:$Lock2Clue is true)[
+    Unlock Lock 2(click-replace: &quot;Unlock Lock 2&quot;)[(set: $Lock2Open to true)Lock 2 is opened]
+    ]
+    (else:)[You need to look for the clue for Lock 2.]
+    ](else:)[Lock 2 is opened.] &lt;br&gt;
+(if: $Lock3Open is false)[
+	(if:$Lock3Clue is true)[
+    Unlock Lock 3(click-replace: &quot;Unlock Lock 3&quot;)[(set: $Lock3Open to true)Lock 3 is opened]
+    ]
+    (else:)[You need to look for the clue for Lock 3.]
+    ](else:)[Lock 3 is opened.] &lt;br&gt;
+}
 
-(if: $Lock1Open is false)[(if:$Lock1Clue is true)[Unlock Lock 1(click-replace: &quot;Unlock Lock 1&quot;)[(set: $Lock1Open to true)Lock 1 is opened]](else:)[You need to look for the clue for Lock 1.]](else:)[Lock 1 is opened.]
-(if: $Lock2Open is false)[(if:$Lock2Clue is true)[Unlock Lock 2(click-replace: &quot;Unlock Lock 2&quot;)[(set: $Lock2Open to true)Lock 2 is opened]](else:)[You need to look for the clue for Lock 2.]](else:)[Lock 2 is opened.]
-(if: $Lock3Open is false)[(if:$Lock3Clue is true)[Unlock Lock 3(click-replace: &quot;Unlock Lock 3&quot;)[(set: $Lock3Open to true)Lock 3 is opened]](else:)[You need to look for the clue for Lock 3.]](else:)[Lock 3 is opened.]
-
-(live:1s)[
+(live:1s)[{
 (if: $Lock1Open and $Lock2Open and $Lock3Open is true)[[[Open the box-&gt;GetKey]]](else:)[[Look around the room-&gt;Room]]
-]</tw-passagedata><tw-passagedata pid="8" name="Escape" tags="" position="625,925" size="100,100">Congratulations! You made it out using the different ciphers to decrypt the codes and get the key from the box.
+}]</tw-passagedata><tw-passagedata pid="8" name="Escape" tags="" position="625,925" size="100,100">Congratulations! You made it out using the different ciphers to decrypt the codes and get the key from the box.
 
 [[Start Over-&gt;Start]]</tw-passagedata><tw-passagedata pid="9" name="GetKey" tags="" position="750,800" size="100,100">(set: $HasKey to true)
 
