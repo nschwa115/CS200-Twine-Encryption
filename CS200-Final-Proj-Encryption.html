@@ -27,7 +27,30 @@ You awaken and find yourself on the ground in a dimly lit room.
 [[Inspect the South Wall-&gt;Door]]
 [[Inspect the West Wall-&gt;WestWall]]
 
-[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
+[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100">(if: $Lock2Clue)[{
+You&#39;ve already gotten the clue from this wall.&lt;br&gt;
+&lt;br&gt;
+[[Return to the Room-&gt;Room]]
+}]
+(else:)[{
+(set: _SolvedKey to &quot;THE ROAD TO FREEDOM STARTS WITH ONE STEP&quot;)
+(set: _Answer to &quot;No response yet&quot;)
+You inspect the north wall and find a framed cross-stitch that reads &quot;A CHAIR at the head of the table — then everyone else falls in line.&quot;&lt;br&gt;
+Below it you see pencil marks of the full alphabet with 5 letters circled at the front. &lt;br&gt;
+Behind the frame you find a piece of paper with the text &quot;TER QNCI TN BQRRINL STCQTS WFTE NMR STER&quot; with the last word circled.&lt;br&gt;
+&lt;br&gt;
+|solved&gt;[]&lt;br&gt;
+&lt;br&gt;
+(link-repeat: &quot;Check answer&quot;)[{
+(set: _Answer to (prompt: &quot;What is the solved cipher&quot;, &quot;&quot;))
+	(if: (uppercase: _Answer) is _SolvedKey)[{
+    	(set:$Lock2Clue to true)
+        (replace:?solved)[You solved the cipher and found the clue to the lock. [[Return to the room-&gt;Room]]]
+        }] (else:)[
+        (replace:?solved)[Sorry that&#39;s not the solution, try again]
+        ]
+}]
+}]</tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
 You&#39;ve already gotten the clue from this wall.&lt;br&gt;
 &lt;br&gt;
 [[Return to the Room-&gt;Room]]
@@ -35,7 +58,7 @@ You&#39;ve already gotten the clue from this wall.&lt;br&gt;
 (else:)[{
 (set: _SolvedKey to &quot;THE KEYS TO FREEDOM LIE BEHIND THE STARS&quot;)
 (set: _Answer to &quot;No response yet&quot;)
-You inspect the West Wall and find a piece of paper and a radial decoding wheel. &lt;br&gt;
+You inspect the west wall and find a piece of paper and a radial decoding wheel. &lt;br&gt;
 &lt;br&gt;
 On the paper you see the text &quot;WKH NHBV WR IUHHGRP OLH EHKLQG WKH VWDUV&quot; with the last word circled and an arrow pointing to it saying &quot;Lock 1&quot;.&lt;br&gt;
 &lt;br&gt;
