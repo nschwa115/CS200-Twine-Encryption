@@ -50,7 +50,30 @@ Behind the frame you find a piece of paper with the text &quot;TER QNCI TN BQRRI
         (replace:?solved)[Sorry that&#39;s not the solution, try again]
         ]
 }]
-}]</tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
+}]</tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100">(if: $Lock3Clue)[{
+You&#39;ve already gotten the clue from this wall.&lt;br&gt;
+&lt;br&gt;
+[[Return to the Room-&gt;Room]]
+}]
+(else:)[{
+(set: _SolvedKey to &quot;FREEDOM WAITS BEYOND THE FINAL LOCK&quot;)
+(set: _Answer to &quot;No response yet&quot;)
+You inspect the east wall and find a loose section of wall, behind it you find an &lt;a href=&quot;https://www.101computing.net/enigma-machine-emulator/&quot; target=&quot;_blank&quot; &gt;Enigma Machine&lt;/a&gt;.&lt;br&gt;
+Scratched into some bricks above the loose wall you see. &quot;III I II AAA AF BR TK&quot; &lt;br&gt;
+Under the machine you find a piece of paper with the text &quot;TCIQFS LNGRLA VNJDX OIOLC QCXLT BENS&quot; with the last word circled.&lt;br&gt;
+&lt;br&gt;
+|solved&gt;[]&lt;br&gt;
+&lt;br&gt;
+(link-repeat: &quot;Check answer&quot;)[{
+(set: _Answer to (prompt: &quot;What is the solved cipher&quot;, &quot;&quot;))
+	(if: (uppercase: _Answer) is _SolvedKey)[{
+    	(set:$Lock3Clue to true)
+        (replace:?solved)[You solved the cipher and found the clue to the lock. [[Return to the room-&gt;Room]]]
+        }] (else:)[
+        (replace:?solved)[Sorry that&#39;s not the solution, try again]
+        ]
+}]
+}]</tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
 You&#39;ve already gotten the clue from this wall.&lt;br&gt;
 &lt;br&gt;
 [[Return to the Room-&gt;Room]]
