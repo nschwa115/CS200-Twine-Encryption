@@ -27,7 +27,32 @@ You awaken and find yourself on the ground in a dimly lit room.
 [[Inspect the South Wall-&gt;Door]]
 [[Inspect the West Wall-&gt;WestWall]]
 
-[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100"></tw-passagedata><tw-passagedata pid="7" name="Box" tags="" position="625,675" size="100,100">
+[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100"></tw-passagedata><tw-passagedata pid="4" name="EastWall" tags="" position="750,675" size="100,100"></tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
+You&#39;ve already gotten the clue from this wall.&lt;br&gt;
+&lt;br&gt;
+[[Return to the Room-&gt;Room]]
+}]
+(else:)[{
+(set: _SolvedKey to &quot;THE KEYS TO FREEDOM LIE BEHIND THE STARS&quot;)
+(set: _Answer to &quot;No response yet&quot;)
+You inspect the West Wall and find a piece of paper and a radial decoding wheel. &lt;br&gt;
+&lt;br&gt;
+On the paper you see the text &quot;WKH NHBV WR IUHHGRP OLH EHKLQG WKH VWDUV&quot; with the last word circled and an arrow pointing to it saying &quot;Lock 1&quot;.&lt;br&gt;
+&lt;br&gt;
+On the back of the decoding wheel you see the words &quot;Ceaser, 3&quot; and you discover that middle of the wheel rotates which realigns the letter pairs.&lt;br&gt;
+&lt;br&gt;
+|solved&gt;[]&lt;br&gt;
+&lt;br&gt;
+(link-repeat: &quot;Check answer&quot;)[{
+(set: _Answer to (prompt: &quot;What is the solved cipher&quot;, &quot;&quot;))
+	(if: (uppercase: _Answer) is _SolvedKey)[{
+    	(set:$Lock1Clue to true)
+        (replace:?solved)[You solved the cipher and found the clue to the lock. [[Return to the room-&gt;Room]]]
+        }] (else:)[
+        (replace:?solved)[Sorry that&#39;s not the solution, try again]
+        ]
+}]
+}]</tw-passagedata><tw-passagedata pid="7" name="Box" tags="" position="625,675" size="100,100">
 On the box you see 3 locks labeled 1, 2, and 3. All locks look similar with a long line of letter wheels.
 
 
