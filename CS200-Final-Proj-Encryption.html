@@ -25,9 +25,7 @@ You awaken and find yourself on the ground in a dimly lit room.
 [[Inspect the North Wall-&gt;NorthWall]]
 [[Inspect the East Wall-&gt;EastWall]]
 [[Inspect the South Wall-&gt;Door]]
-[[Inspect the West Wall-&gt;WestWall]]
-
-[[DEV-TESTING]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100">(if: $Lock2Clue)[{
+[[Inspect the West Wall-&gt;WestWall]]</tw-passagedata><tw-passagedata pid="3" name="NorthWall" tags="" position="625,550" size="100,100">(if: $Lock2Clue)[{
 You&#39;ve already gotten the clue from this wall.&lt;br&gt;
 &lt;br&gt;
 [[Return to the Room-&gt;Room]]
@@ -73,7 +71,16 @@ Under the machine you find a piece of paper with the text &quot;TCIQFS LNGRLA VN
         (replace:?solved)[Sorry that&#39;s not the solution, try again]
         ]
 }]
-}]</tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100"></tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
+}]</tw-passagedata><tw-passagedata pid="5" name="Door" tags="" position="625,800" size="100,100">You look at the south wall and it has a heavy metal door.
+Trying the handle indicates that the door is locked.
+
+{
+(if: $HasKey)[{
+	But you found the key in the box. &lt;br&gt;
+	[[Use the key to open the door-&gt;Escape]]
+    }]
+    (else:)[[[Go back to the room and keep looking.-&gt;Room]]]
+}</tw-passagedata><tw-passagedata pid="6" name="WestWall" tags="" position="500,675" size="100,100">(if: $Lock1Clue)[{
 You&#39;ve already gotten the clue from this wall.&lt;br&gt;
 &lt;br&gt;
 [[Return to the Room-&gt;Room]]
